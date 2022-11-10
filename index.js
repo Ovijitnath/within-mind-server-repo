@@ -16,6 +16,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 async function run() {
+
+
     try {
         const serviceCollection = client.db('withinMind').collection('services');
         const orderCollection = client.db('withinMind').collection('reviews');
@@ -36,6 +38,7 @@ async function run() {
 
 
         // reviews api
+
         app.get('/reviews', async (req, res) => {
             let query = {};
 
@@ -50,11 +53,14 @@ async function run() {
             res.send(orders);
         });
 
+
+
         app.post('/reviews', async (req, res) => {
             const review = req.body;
             const result = await orderCollection.insertOne(review);
             res.send(result);
         });
+
         app.patch('/reviews/:id', async (req, res) => {
             const id = req.params.id;
             const status = req.body.status
@@ -68,6 +74,7 @@ async function run() {
             res.send(result);
         })
 
+
         app.delete('/reviews/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
@@ -75,8 +82,10 @@ async function run() {
             res.send(result);
         })
 
+
     }
     finally {
+
     }
 }
 
