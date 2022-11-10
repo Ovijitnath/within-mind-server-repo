@@ -77,7 +77,6 @@ async function run() {
 
     }
     finally {
-
     }
 }
 
