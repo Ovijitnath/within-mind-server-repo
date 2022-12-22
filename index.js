@@ -19,6 +19,8 @@ async function run() {
 
 
     try {
+
+        // MongoDB Collections
         const serviceCollection = client.db('withinMind').collection('services');
         const orderCollection = client.db('withinMind').collection('reviews');
 
@@ -75,6 +77,7 @@ async function run() {
         })
 
 
+        // Delete a Review
         app.delete('/reviews/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
